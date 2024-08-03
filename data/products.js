@@ -44,9 +44,10 @@ class Describtion extends Product {
   sizes;
   color;
   size;
-
+  describtions;
   constructor(productDetails) {
     super(productDetails);
+    this.describtions = productDetails.describtions;
     this.size = productDetails.size;
     this.color = productDetails.color;
     this.colors = productDetails.colors;
@@ -55,7 +56,8 @@ class Describtion extends Product {
   extraInfoHtml() {
     const colorButton = this.colors
       .map((color, index) => {
-        return `<button class="color-button color-${this.id}" data-product-id="${this.id}" data-color-index="${index}" data-color-image="${color.image}">${color.name}</button>`;
+        return `
+        <button class="color-button color-${this.id}" data-product-id="${this.id}" data-color-index="${index}" data-color-image="${color.image}">${color.name}</button>`;
       })
       .join("");
 
@@ -69,17 +71,29 @@ class Describtion extends Product {
       ${
         colorButton
           ? `
-
+          <p class="productDetail-paragraph">
+            ${this.describtions[0]}
+          </p>
           <div class="button-container">
             ${colorButton}
           </div>`
           : ""
       }
-      ${sizeButton ? `<div class="button-container">${sizeButton}</div>` : ""}
+      ${
+        sizeButton
+          ? `<p class="productDetail-paragraph">
+            ${this.describtions[1]}
+          </p> <div class="button-container">${sizeButton}</div>`
+          : ""
+      }
     `;
   }
 }
-
+/**
+ *        <!--<p class="productDetail-paragraph">
+            ${this.describtions[0]}
+          </p>-->
+ */
 export let products = JSON.parse(localStorage.getItem("products")) || [];
 function saveProductToStorage() {
   localStorage.setItem("products", JSON.stringify(products));

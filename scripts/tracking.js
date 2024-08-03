@@ -6,6 +6,9 @@ function loadTackingPage() {
   const trackingItem = JSON.parse(localStorage.getItem("trackingItem"));
 
   let trackingProduct = getProduct(trackingItem.productId);
+  let describtionFirst = trackingProduct.describtions[0];
+  let describtionSecond = trackingProduct.describtions[1];
+
   let orderTime = "";
   let arriveDate = "";
   let productQuantity = 0;
@@ -68,20 +71,18 @@ function loadTackingPage() {
       </div>
 
       <div class="describtion">
-        <span class="size"> 
-          <div class="color-container">
-            ${trackingProduct.size ? "Size: " : ""}
-            <span class="quantity-label size-label-${trackingProduct.id}">
-              ${trackingProduct.size ? trackingProduct.size : ""}
-            </span>  
-          </div>
-          <div class="size-container">
-            ${trackingProduct.color ? "Color: " : ""}
-            <span class="quantity-label quantity-label-${trackingProduct.id}">
-              ${trackingProduct.color ? trackingProduct.color : ""}
-            </span> 
-          </div>           
-        </span>
+        <div class="color-container">
+          ${trackingProduct.size ? `${describtionSecond}: ` : ""}
+          <span class="quantity-label size-label-${trackingProduct.id}">
+            ${trackingProduct.size ? trackingProduct.size : ""}
+          </span>  
+        </div>
+        <div class="size-container">
+          ${trackingProduct.color ? `${describtionFirst}: ` : ""}
+          <span class="quantity-label quantity-label-${trackingProduct.id}">
+            ${trackingProduct.color ? trackingProduct.color : ""}
+          </span> 
+        </div>           
       </div>
 
       <div class="product-info">Quantity: ${productQuantity}</div>

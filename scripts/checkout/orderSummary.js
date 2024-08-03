@@ -33,6 +33,10 @@ export function renderOrderSummary() {
     let addedDays = deliveryOption.deliveryDays;
     const dateString = calculateDeliveryDate(addedDays);
     console.log();
+    let describtionFirst = matchingProduct.describtions[0];
+    console.log(describtionFirst);
+    let describtionSecond = matchingProduct.describtions[1];
+    console.log(describtionFirst);
     cartSummaryHTML += `
     <div class="cart-item-container js-cart-item-container-${productId}">
       <div class="delivery-date">${dateString}</div>
@@ -52,20 +56,18 @@ export function renderOrderSummary() {
           </div>
           <div class="product-quantity">
             <div class="describtion">
-              <span class="size"> 
-                <div class="color-container">
-                  ${matchingProduct.size ? "Size: " : ""}
-                  <span class="quantity-label size-label-${productId}">
-                    ${matchingProduct.size ? matchingProduct.size : ""}
-                  </span>  
-                </div>
-                <div class="size-container">
-                  ${matchingProduct.color ? "Color: " : ""}
-                  <span class="quantity-label quantity-label-${productId}">
-                    ${matchingProduct.color ? matchingProduct.color : ""}
-                  </span> 
-                </div>           
-              </span>
+              <div class="size-container">
+                ${matchingProduct.size ? `${describtionSecond}: ` : ""}
+                <span class="quantity-label size-label-${productId}">
+                  ${matchingProduct.size ? matchingProduct.size : ""}
+                </span>  
+              </div>
+              <div class="color-container">
+                ${matchingProduct.color ? `${describtionFirst}: ` : ""}
+                <span class="quantity-label quantity-label-${productId}">
+                  ${matchingProduct.color ? matchingProduct.color : ""}
+                </span> 
+              </div>           
             </div>
             <span>
             Quantity:

@@ -180,11 +180,12 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 2px solid #ddd;
 }
 
 .size-button:hover,
 .color-button:hover {
-  border-color: #ddd;
+  border-color: #bbb;
   background-color: #f5f5f5;
 }
 
@@ -218,4 +219,16 @@
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.productDetail-paragraph {
+  font-size: 0.8rem; /* Reduced font size */
+  font-weight: 500; /* Normal font weight */
+  color: #444; /* Slightly lighter color */
+  margin-bottom: 5px; /* Reduced bottom margin */
+  padding: 2px; /* Reduced padding */
+  background-color: #f5f5f5; /* Slightly darker background */
+  border-left: 4px solid #e91e63; /* Pink border with smaller width */
+  border-radius: 4px; /* Slightly smaller border radius */
+  margin-left: 5px;
 }

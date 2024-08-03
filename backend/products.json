@@ -34,6 +34,7 @@
     },
     "priceCents": 799,
     "keywords": ["tshirts", "apparel", "mens"],
+    "describtions": ["Color", "Size"],
     "sizes": [
       {
         "name": "S"
@@ -102,7 +103,31 @@
       "count": 317
     },
     "priceCents": 2400,
-    "keywords": ["hoodies", "sweaters", "apparel"]
+    "keywords": ["hoodies", "sweaters", "apparel"],
+    "describtions": ["Color", "Size"],
+    "size": "S",
+    "color": "Yellow",
+    "sizes": [
+      {
+        "name": "S"
+      },
+      {
+        "name": "M"
+      },
+      {
+        "name": "L"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Teal",
+        "image": "images/products/variations/plain-hooded-fleece-sweatshirt-teal.jpg"
+      },
+      {
+        "name": "Yellow",
+        "image": "images/products/plain-hooded-fleece-sweatshirt-yellow.jpg"
+      }
+    ]
   },
   {
     "id": "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -113,7 +138,20 @@
       "count": 144
     },
     "priceCents": 3599,
-    "keywords": ["bathroom", "washroom", "restroom", "towels", "bath towels"]
+    "keywords": ["bathroom", "washroom", "restroom", "towels", "bath towels"],
+    "describtions": ["Set"],
+    "color": "6-Piece",
+    "sizes": [],
+    "colors": [
+      {
+        "name": "6-Piece",
+        "image": "images/products/luxury-tower-set-6-piece.jpg"
+      },
+      {
+        "name": "4-Piece",
+        "image": "images/products/variations/luxury-tower-set-4-piece.jpg"
+      }
+    ]
   },
   {
     "id": "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
@@ -124,7 +162,20 @@
       "count": 305
     },
     "priceCents": 2899,
-    "keywords": ["bathroom", "cleaning"]
+    "keywords": ["bathroom", "cleaning"],
+    "describtions": ["Style"],
+    "color": "Plain",
+    "sizes": [],
+    "colors": [
+      {
+        "name": "Plain",
+        "image": "images/products/liquid-laundry-detergent-plain.jpg"
+      },
+      {
+        "name": "Levender",
+        "image": "images/products/variations/liquid-laundry-detergent-lavender.jpg"
+      }
+    ]
   },
   {
     "id": "58b4fc92-e98c-42aa-8c55-b6b79996769a",
@@ -307,6 +358,7 @@
         "name": "twin"
       }
     ],
+    "describtions": ["Color"],
     "colors": [
       {
         "name": "blue",

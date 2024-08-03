@@ -21,7 +21,8 @@ function loadOrderHtml() {
       let date = new Date(productDetails.estimatedDeliveryTime);
       let options = { month: "long", day: "numeric" };
       const deliveryDate = date.toLocaleDateString("en-US", options);
-
+      let describtionFirst = matchingProduct.describtions[0];
+      let describtionSecond = matchingProduct.describtions[1];
       productHTML += `
         <div class="product-image-container">
           <img src="${matchingProduct.image}" />
@@ -33,22 +34,22 @@ function loadOrderHtml() {
           </div>
           <div class="product-delivery-date">Arriving on: ${deliveryDate}</div>
           <div class="describtion">
-            <span class="size"> 
-              <div class="color-container">
-                ${matchingProduct.size ? "Size: " : ""}
+
+              <div class="size-container">
+                ${matchingProduct.size ? `${describtionSecond}: ` : ""}
                 <span class="quantity-label size-label-${matchingProduct.id}">
                   ${matchingProduct.size ? matchingProduct.size : ""}
                 </span>  
               </div>
-              <div class="size-container">
-                ${matchingProduct.color ? "Color: " : ""}
+              <div class="color-container">
+                ${matchingProduct.color ? `${describtionFirst}: ` : ""}
                 <span class="quantity-label quantity-label-${
                   matchingProduct.id
                 }">
                   ${matchingProduct.color ? matchingProduct.color : ""}
                 </span> 
               </div>           
-            </span>
+
           </div>
           <div class="product-quantity">Quantity: ${
             productDetails.quantity
