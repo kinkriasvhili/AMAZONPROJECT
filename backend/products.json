@@ -358,7 +358,7 @@
         "name": "twin"
       }
     ],
-    "describtions": ["Color"],
+    "describtions": ["Color", "Size"],
     "colors": [
       {
         "name": "blue",
