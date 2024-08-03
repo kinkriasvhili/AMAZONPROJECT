@@ -34,16 +34,29 @@
     },
     "priceCents": 799,
     "keywords": ["tshirts", "apparel", "mens"],
-    "sizes": ["S", "M", "L"],
+    "sizes": [
+      {
+        "name": "S"
+      },
+      {
+        "name": "M"
+      },
+      {
+        "name": "L"
+      }
+    ],
     "colors": [
       {
-        "name": "black"
+        "name": "black",
+        "image": "images/products/variations/adults-plain-cotton-tshirt-2-pack-black.jpg"
       },
       {
-        "name": "red"
+        "name": "red",
+        "image": "images/products/variations/adults-plain-cotton-tshirt-2-pack-red.jpg"
       },
       {
-        "name": "teal"
+        "name": "teal",
+        "image": "images/products/variations/adults-plain-cotton-tshirt-2-pack-teal.jpg"
       }
     ]
   },
@@ -286,6 +299,26 @@
   },
   {
     "id": "19c6a64a-5463-4d45-9af8-e41140a4100c",
+    "sizes": [
+      {
+        "name": "queen"
+      },
+      {
+        "name": "twin"
+      }
+    ],
+    "colors": [
+      {
+        "name": "blue",
+        "image": "images/products/variations/duvet-cover-set-blue-queen.jpg"
+      },
+      {
+        "name": "red",
+        "image": "images/products/variations/duvet-cover-set-red-queen.jpg"
+      }
+    ],
+    "size": "queen",
+    "color": "blue",
     "image": "images/products/duvet-cover-set-blue-twin.jpg",
     "name": "Duvet Cover Set with Zipper Closure",
     "rating": {

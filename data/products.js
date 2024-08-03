@@ -39,7 +39,6 @@ class Product {
     return ``;
   }
 }
-
 class Describtion extends Product {
   colors;
   sizes;
@@ -53,17 +52,16 @@ class Describtion extends Product {
     this.colors = productDetails.colors;
     this.sizes = productDetails.sizes;
   }
-  //           <img class="product-image" src="${this.colors[0].image}" alt="${this.name}" />
   extraInfoHtml() {
     const colorButton = this.colors
       .map((color, index) => {
-        return `<button class="color-button color-${this.id}" data-product-id="${this.id}" data-color-index="${index}">${color.name}</button>`;
+        return `<button class="color-button color-${this.id}" data-product-id="${this.id}" data-color-index="${index}" data-color-image="${color.image}">${color.name}</button>`;
       })
       .join("");
 
     const sizeButton = this.sizes
       .map((size, index) => {
-        return `<button class="size-button" data-product-id="${this.id}" data-size-index="${index}">${size}</button>`;
+        return `<button class="size-button" data-product-id="${this.id}" data-size-index="${index}">${size.name}</button>`;
       })
       .join("");
 
@@ -98,7 +96,6 @@ export async function loadProductsFetch(fun) {
       promise = await fetch("../backend/products.json");
       data = await promise.json();
     }
-
     products = data.map((productDetails) => {
       if (productDetails.colors) {
         return new Describtion(productDetails);
@@ -122,6 +119,7 @@ document.addEventListener("click", (event) => {
     handleColorButtonClickSize(event);
   }
 });
+
 function handleColorButtonClickColor(event) {
   const clickedButton = event.target;
   const productId = clickedButton.getAttribute("data-product-id");
@@ -136,14 +134,15 @@ function handleColorButtonClickColor(event) {
     button.classList.remove("active");
   });
   clickedButton.classList.add("active");
-  const colorIndex = clickedButton.getAttribute("data-color-index");
+  const colorImage = clickedButton.getAttribute("data-color-image");
+  console.log(colorImage);
+
   let imageColor = clickedButton.innerHTML;
-  product.image = `images/products/variations/adults-plain-cotton-tshirt-2-pack-${imageColor}.jpg`;
-  console.log(product.image);
+
+  product.image = colorImage;
 
   document.querySelector(`.product-image-${productId}`).src = product.image;
   product.color = imageColor;
-  console.log(product.color);
   saveProductToStorage();
 }
 
@@ -162,7 +161,7 @@ function handleColorButtonClickSize(event) {
 
   clickedButton.classList.add("active");
   const sizeIndex = clickedButton.getAttribute("data-size-index");
-  product.size = product.sizes[sizeIndex];
+  product.size = product.sizes[sizeIndex].name;
   saveProductToStorage();
 }
 
