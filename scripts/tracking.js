@@ -4,7 +4,6 @@ import { cart, cartQuantityCalculation } from "../data/cart.js";
 loadProductsFetch(loadTackingPage);
 function loadTackingPage() {
   const trackingItem = JSON.parse(localStorage.getItem("trackingItem"));
-
   let trackingProduct = getProduct(trackingItem.productId);
   let describtionFirst = trackingProduct.describtions[0];
   let describtionSecond = trackingProduct.describtions[1];
@@ -72,15 +71,15 @@ function loadTackingPage() {
 
       <div class="describtion">
         <div class="color-container">
-          ${trackingProduct.size ? `${describtionSecond}: ` : ""}
+          ${trackingItem.productSize ? `${describtionSecond}: ` : ""}
           <span class="quantity-label size-label-${trackingProduct.id}">
-            ${trackingProduct.size ? trackingProduct.size : ""}
+            ${trackingItem.productSize ? trackingItem.productSize : ""}
           </span>  
         </div>
         <div class="size-container">
-          ${trackingProduct.color ? `${describtionFirst}: ` : ""}
+          ${trackingItem.productColor ? `${describtionFirst}: ` : ""}
           <span class="quantity-label quantity-label-${trackingProduct.id}">
-            ${trackingProduct.color ? trackingProduct.color : ""}
+            ${trackingItem.productColor ? trackingItem.productColor : ""}
           </span> 
         </div>           
       </div>
@@ -89,7 +88,7 @@ function loadTackingPage() {
 
       <img
         class="product-image"
-        src="${trackingProduct.image}"
+        src="${trackingItem.productImage}"
       />
 
       <div class="progress-labels-container">

@@ -20,7 +20,7 @@ disableButton(".js-place-order", () => {
 function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-export function addToCart(productId) {
+export function addToCart(productId, color, size, image) {
   disableButton(".js-place-order", () => {
     document
       .querySelector(".js-place-order")
@@ -35,8 +35,13 @@ export function addToCart(productId) {
   }
 
   cart.forEach((item) => {
-    if (productId === item.productId) {
+    if (
+      productId === item.productId &&
+      color === item.color &&
+      size === item.size
+    ) {
       matchingItem = item;
+      console.log("me");
     }
   });
 
@@ -44,6 +49,9 @@ export function addToCart(productId) {
     matchingItem.quantity += sectionElementValue;
   } else {
     cart.push({
+      image,
+      color,
+      size,
       productId,
       quantity: sectionElementValue,
       deliveryOptionId: "1",

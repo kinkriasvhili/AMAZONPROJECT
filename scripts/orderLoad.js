@@ -25,7 +25,7 @@ function loadOrderHtml() {
       let describtionSecond = matchingProduct.describtions[1];
       productHTML += `
         <div class="product-image-container">
-          <img src="${matchingProduct.image}" />
+          <img src="${productDetails.image}" />
         </div>
 
         <div class="product-details">
@@ -36,17 +36,17 @@ function loadOrderHtml() {
           <div class="describtion">
 
               <div class="size-container">
-                ${matchingProduct.size ? `${describtionSecond}: ` : ""}
+                ${productDetails.size ? `${describtionSecond}: ` : ""}
                 <span class="quantity-label size-label-${matchingProduct.id}">
-                  ${matchingProduct.size ? matchingProduct.size : ""}
+                  ${productDetails.size ? productDetails.size : ""}
                 </span>  
               </div>
               <div class="color-container">
-                ${matchingProduct.color ? `${describtionFirst}: ` : ""}
+                ${productDetails.color ? `${describtionFirst}: ` : ""}
                 <span class="quantity-label quantity-label-${
                   matchingProduct.id
                 }">
-                  ${matchingProduct.color ? matchingProduct.color : ""}
+                  ${productDetails.color ? productDetails.color : ""}
                 </span> 
               </div>           
 
@@ -64,9 +64,16 @@ function loadOrderHtml() {
 
         <div class="product-actions">
           <a href="tracking.html?orderId=123&productId=456">
-            <button class="track-package-button button-secondary js-track-package" data-track-package-id="${
-              productDetails.productId
-            }" data-order-id="${value.id}">
+            <button 
+              class="track-package-button 
+                    button-secondary 
+                    js-track-package"
+              data-track-package-id="${productDetails.productId}" 
+              data-order-id="${value.id}"
+              data-product-image="${productDetails.image}"
+              data-product-color="${productDetails.color}"
+              data-product-size="${productDetails.size}"
+            >
               Track package
             </button>
           </a>
@@ -106,12 +113,21 @@ function loadOrderHtml() {
   }
 
   document.querySelectorAll(".js-track-package").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
       let productId = button.dataset.trackPackageId;
       let { orderId } = button.dataset;
       trackingItem.productId = productId;
       trackingItem.orderId = orderId;
+      let clickedButton = event.target;
+      const productColor = clickedButton.getAttribute("data-product-color");
+      const productSize = clickedButton.getAttribute("data-product-size");
+      const productImage = clickedButton.getAttribute("data-product-image");
+      trackingItem.productImage = productImage;
+      trackingItem.productSize = productSize;
+      trackingItem.productColor = productColor;
+
       localStorage.setItem("trackingItem", JSON.stringify(trackingItem));
+      console.log(trackingItem);
     });
   });
 
@@ -124,3 +140,4 @@ function loadOrderHtml() {
     });
   });
 }
+//

@@ -1,5 +1,5 @@
 import { cart, addToCart, cartQuantityCalculation } from "../data/cart.js";
-import { products, loadProductsFetch } from "../data/products.js";
+import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { formatCurrency } from "../scripts/utils/money.js";
 import { addToCartAffect } from "../scripts/utils/cssAffects.js";
 
@@ -108,7 +108,9 @@ function renderProductsGrid() {
   document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     button.addEventListener("click", () => {
       const { productId } = button.dataset;
-      addToCart(productId);
+      let product = getProduct(productId);
+      console.log(product.image);
+      addToCart(productId, product.color, product.size, product.image);
 
       updateCartQuantity();
       addToCartAffect(productId, addedMessageTimeouts);

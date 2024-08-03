@@ -34,9 +34,7 @@ export function renderOrderSummary() {
     const dateString = calculateDeliveryDate(addedDays);
     console.log();
     let describtionFirst = matchingProduct.describtions[0];
-    console.log(describtionFirst);
     let describtionSecond = matchingProduct.describtions[1];
-    console.log(describtionFirst);
     cartSummaryHTML += `
     <div class="cart-item-container js-cart-item-container-${productId}">
       <div class="delivery-date">${dateString}</div>
@@ -44,7 +42,7 @@ export function renderOrderSummary() {
       <div class="cart-item-details-grid">
         <img
           class="product-image"
-          src="${matchingProduct.image}"
+          src="${cartItem.image}"
         />
 
         <div class="cart-item-details">
@@ -57,15 +55,15 @@ export function renderOrderSummary() {
           <div class="product-quantity">
             <div class="describtion">
               <div class="size-container">
-                ${matchingProduct.size ? `${describtionSecond}: ` : ""}
+                ${cartItem.size ? `${describtionSecond}: ` : ""}
                 <span class="quantity-label size-label-${productId}">
-                  ${matchingProduct.size ? matchingProduct.size : ""}
+                  ${cartItem.size ? cartItem.size : ""}
                 </span>  
               </div>
               <div class="color-container">
-                ${matchingProduct.color ? `${describtionFirst}: ` : ""}
+                ${cartItem.color ? `${describtionFirst}: ` : ""}
                 <span class="quantity-label quantity-label-${productId}">
-                  ${matchingProduct.color ? matchingProduct.color : ""}
+                  ${cartItem.color ? cartItem.color : ""}
                 </span> 
               </div>           
             </div>

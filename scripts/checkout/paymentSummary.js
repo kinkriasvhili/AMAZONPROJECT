@@ -87,6 +87,12 @@ export function renderPaymentSummary() {
           );
 
           let orderData = await response.json();
+
+          cart.forEach((cartItem, index) => {
+            orderData.products[index].color = cartItem.color;
+            orderData.products[index].size = cartItem.size;
+            orderData.products[index].image = cartItem.image;
+          });
           addOrder(orderData);
         } else {
           document
