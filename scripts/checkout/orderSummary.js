@@ -32,7 +32,7 @@ export function renderOrderSummary() {
 
     let addedDays = deliveryOption.deliveryDays;
     const dateString = calculateDeliveryDate(addedDays);
-
+    console.log();
     cartSummaryHTML += `
     <div class="cart-item-container js-cart-item-container-${productId}">
       <div class="delivery-date">${dateString}</div>
@@ -47,9 +47,26 @@ export function renderOrderSummary() {
           <div class="product-name">
             ${matchingProduct.name}
           </div>
-          <div class="product-price">${matchingProduct.getPrice()}</div>
+          <div class="product-price">
+            ${matchingProduct.getPrice()}
+          </div>
           <div class="product-quantity">
-            
+            <div class="describtion">
+              <span class="size"> 
+                <div class="color-container">
+                  ${matchingProduct.size ? "Size: " : ""}
+                  <span class="quantity-label size-label-${productId}">
+                    ${matchingProduct.size ? matchingProduct.size : ""}
+                  </span>  
+                </div>
+                <div class="size-container">
+                  ${matchingProduct.color ? "Color: " : ""}
+                  <span class="quantity-label quantity-label-${productId}">
+                    ${matchingProduct.color ? matchingProduct.color : ""}
+                  </span> 
+                </div>           
+              </span>
+            </div>
             <span>
             Quantity:
             <span class="quantity-label quantity-label-${productId}">

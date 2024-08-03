@@ -90,11 +90,14 @@ function saveProductToStorage() {
 export async function loadProductsFetch(fun) {
   //send request
   try {
-    //(await JSON.parse(localStorage.getItem("products")))
-    // ? JSON.parse(localStorage.getItem("products"))
-    // :
-    const promise = await fetch("../backend/products.json");
-    let data = await promise.json();
+    let promise;
+    let data;
+    if (JSON.parse(localStorage.getItem("products"))) {
+      data = JSON.parse(localStorage.getItem("products"));
+    } else {
+      promise = await fetch("../backend/products.json");
+      data = await promise.json();
+    }
 
     products = data.map((productDetails) => {
       if (productDetails.colors) {
@@ -106,9 +109,6 @@ export async function loadProductsFetch(fun) {
     if (fun && data) {
       await fun();
     }
-    console.log(
-      document.querySelector(`.color-83d4ca15-0f35-48f5-b7a3-1ea210004f2e`)
-    );
     return promise;
   } catch (error) {
     console.log("Unexpected error. Please try it again ", error);
@@ -123,10 +123,6 @@ document.addEventListener("click", (event) => {
   }
 });
 function handleColorButtonClickColor(event) {
-  // data-color-index="${index}
-  console.log(
-    document.querySelector(`.color-83d4ca15-0f35-48f5-b7a3-1ea210004f2e`)
-  );
   const clickedButton = event.target;
   const productId = clickedButton.getAttribute("data-product-id");
   const product = getProduct(productId);
@@ -142,10 +138,12 @@ function handleColorButtonClickColor(event) {
   clickedButton.classList.add("active");
   const colorIndex = clickedButton.getAttribute("data-color-index");
   let imageColor = clickedButton.innerHTML;
-  product.image = product.colors[colorIndex].image;
-  document.querySelector(
-    `.product-image-${productId}`
-  ).src = `images/products/variations/adults-plain-cotton-tshirt-2-pack-${imageColor}.jpg`;
+  product.image = `images/products/variations/adults-plain-cotton-tshirt-2-pack-${imageColor}.jpg`;
+  console.log(product.image);
+
+  document.querySelector(`.product-image-${productId}`).src = product.image;
+  product.color = imageColor;
+  console.log(product.color);
   saveProductToStorage();
 }
 

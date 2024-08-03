@@ -30,7 +30,6 @@ function loadTackingPage() {
     day: "numeric",
   };
   const ConvertedArriveDate = dateOfArrive.toLocaleDateString("en-US", options);
-  console.log(ConvertedArriveDate);
   //2024-08-03T16:38:35.561Z
   //order time
   const dateOfOrder = new Date(orderTime);
@@ -43,17 +42,8 @@ function loadTackingPage() {
   const differenceCurrentToOrder = currentTimeInNum - dateOfOrder;
   const differenceOrderToArrive = dateOfArrive - dateOfOrder;
 
-  //
-  console.log(`current time ${currentTimeInNum}`);
-  console.log(`arive time ${dateOfArrive}`);
-  console.log(`order time ${dateOfOrder}`);
-  console.log(differenceCurrentToOrder);
-  console.log(differenceOrderToArrive);
-  //
-
   let percentageOfDelivery =
     (differenceCurrentToOrder / differenceOrderToArrive) * 100;
-  console.log(`percent - ${percentageOfDelivery}%`);
   let currentPreparing = "";
   let currentDelivered = "";
   let currentShipped = "";
@@ -77,6 +67,23 @@ function loadTackingPage() {
         ${trackingProduct.name}
       </div>
 
+      <div class="describtion">
+        <span class="size"> 
+          <div class="color-container">
+            ${trackingProduct.size ? "Size: " : ""}
+            <span class="quantity-label size-label-${trackingProduct.id}">
+              ${trackingProduct.size ? trackingProduct.size : ""}
+            </span>  
+          </div>
+          <div class="size-container">
+            ${trackingProduct.color ? "Color: " : ""}
+            <span class="quantity-label quantity-label-${trackingProduct.id}">
+              ${trackingProduct.color ? trackingProduct.color : ""}
+            </span> 
+          </div>           
+        </span>
+      </div>
+
       <div class="product-info">Quantity: ${productQuantity}</div>
 
       <img
@@ -96,7 +103,6 @@ function loadTackingPage() {
     </div>`;
 
   if (document.querySelector(".js-cart-quantity")) {
-    console.log("hello");
     document.querySelector(".js-cart-quantity").innerHTML =
       cartQuantityCalculation(cart);
   }

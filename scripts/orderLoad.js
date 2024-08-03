@@ -32,8 +32,30 @@ function loadOrderHtml() {
             ${matchingProduct.name}
           </div>
           <div class="product-delivery-date">Arriving on: ${deliveryDate}</div>
-          <div class="product-quantity">Quantity: ${productDetails.quantity}</div>
-          <button class="buy-again-button button-primary js-buy-again-btn js-again-${productDetails.productId}" data-buy-again-id="${productDetails.productId}">
+          <div class="describtion">
+            <span class="size"> 
+              <div class="color-container">
+                ${matchingProduct.size ? "Size: " : ""}
+                <span class="quantity-label size-label-${matchingProduct.id}">
+                  ${matchingProduct.size ? matchingProduct.size : ""}
+                </span>  
+              </div>
+              <div class="size-container">
+                ${matchingProduct.color ? "Color: " : ""}
+                <span class="quantity-label quantity-label-${
+                  matchingProduct.id
+                }">
+                  ${matchingProduct.color ? matchingProduct.color : ""}
+                </span> 
+              </div>           
+            </span>
+          </div>
+          <div class="product-quantity">Quantity: ${
+            productDetails.quantity
+          }</div>
+          <button class="buy-again-button button-primary js-buy-again-btn js-again-${
+            productDetails.productId
+          }" data-buy-again-id="${productDetails.productId}">
             <img class="buy-again-icon" src="images/icons/buy-again.png" />
             <span class="buy-again-message">Buy it again</span>
           </button>
@@ -41,7 +63,9 @@ function loadOrderHtml() {
 
         <div class="product-actions">
           <a href="tracking.html?orderId=123&productId=456">
-            <button class="track-package-button button-secondary js-track-package" data-track-package-id="${productDetails.productId}" data-order-id="${value.id}">
+            <button class="track-package-button button-secondary js-track-package" data-track-package-id="${
+              productDetails.productId
+            }" data-order-id="${value.id}">
               Track package
             </button>
           </a>
