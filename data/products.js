@@ -181,7 +181,6 @@ function handleColorButtonClickColor(event) {
   });
   clickedButton.classList.add("active");
   const colorImage = clickedButton.getAttribute("data-color-image");
-  console.log(colorImage);
 
   let imageColor = clickedButton.innerHTML;
 

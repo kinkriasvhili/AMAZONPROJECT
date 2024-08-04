@@ -61,10 +61,10 @@ export function addToCart(productId, color, size, image, cartId) {
   }
   saveToStorage();
 }
-export function remoFromCart(productId) {
+export function remoFromCart(cartId) {
   const newCart = [];
   cart.forEach((cartItem) => {
-    if (cartItem.productId != productId) {
+    if (cartItem.cartId != cartId) {
       newCart.push(cartItem);
     }
   });

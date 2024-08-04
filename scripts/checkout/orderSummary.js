@@ -87,7 +87,7 @@ export function renderOrderSummary() {
             <span class="update-quantity-link link-primary" data-product-id=${productId}>
               Update
             </span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id=${productId}>
+            <span class="delete-quantity-link link-primary js-delete-link" data-cart-id="${cartId}">
               Delete
             </span>
           </div>
@@ -155,9 +155,9 @@ export function renderOrderSummary() {
   checkoutItem();
   // delete
   document.querySelectorAll(".js-delete-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      let { productId } = link.dataset;
-      remoFromCart(productId);
+    link.addEventListener("click", (event) => {
+      let { cartId } = link.dataset;
+      remoFromCart(cartId);
       renderOrderSummary();
       checkoutItem();
       renderPaymentSummary();
