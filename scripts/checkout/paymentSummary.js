@@ -64,7 +64,7 @@ export function renderPaymentSummary() {
         <input type="checkbox" class="js-paypal-toggle" false />
       </div>
       <div class="payment-buttons">
-        <div id="paypal-button-container"></div>
+        <div class="paypal-button-container"></div>
         <button id="secondary-button" class="place-order-button button-primary 
           js-place-order">
           Place your order
@@ -74,7 +74,7 @@ export function renderPaymentSummary() {
   `;
 
   document.querySelector(".js-payment-summary").innerHTML = paymentHTML;
-
+  showPaypalButtons();
   document
     .querySelector(".js-place-order")
     .addEventListener("click", async (event) => {
@@ -121,15 +121,16 @@ export function renderPaymentSummary() {
     });
 }
 function showPaypalButtons() {
-  const paypalContainer = document.getElementById("paypal-button-container");
+  const paypalContainer = document.querySelector(".paypal-button-container");
+  console.log(paypalContainer);
   paypalContainer.style.display = "none";
 
   document
     .querySelector(".js-paypal-toggle")
     .addEventListener("change", function (event) {
       const isChecked = event.target.checked;
-      const paypalContainer = document.getElementById(
-        "paypal-button-container"
+      const paypalContainer = document.querySelector(
+        ".paypal-button-container"
       );
       const secondaryButton = document.getElementById("secondary-button");
 
@@ -164,6 +165,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       },
     })
-    .render("#paypal-button-container");
-  showPaypalButtons();
+    .render(".paypal-button-container");
 });

@@ -268,7 +268,7 @@
 }
 
 /* Optional: To ensure the button fits within the container */
-#paypal-button-container {
+.paypal-button-container {
   margin-top: 10px;
   width: 100%;
 }
