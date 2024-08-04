@@ -59,11 +59,18 @@ export function renderPaymentSummary() {
           $${formatCurrency(totalCents)}
         </div>
       </div>
-
-      <button class="place-order-button button-primary 
-        js-place-order">
-        Place your order
-      </button>
+      <div class="paypal-toggle">
+        Use PayPal
+        <input type="checkbox" class="js-paypal-toggle" false />
+      </div>
+      <div class="payment-buttons">
+        <div id="paypal-button-container"></div>
+        <button id="secondary-button" class="place-order-button button-primary 
+          js-place-order">
+          Place your order
+        </button>
+      </div>
+      
   `;
 
   document.querySelector(".js-payment-summary").innerHTML = paymentHTML;
@@ -113,3 +120,50 @@ export function renderPaymentSummary() {
       }
     });
 }
+function showPaypalButtons() {
+  const paypalContainer = document.getElementById("paypal-button-container");
+  paypalContainer.style.display = "none";
+
+  document
+    .querySelector(".js-paypal-toggle")
+    .addEventListener("change", function (event) {
+      const isChecked = event.target.checked;
+      const paypalContainer = document.getElementById(
+        "paypal-button-container"
+      );
+      const secondaryButton = document.getElementById("secondary-button");
+
+      if (isChecked) {
+        paypalContainer.style.display = "block";
+        secondaryButton.style.display = "none";
+      } else {
+        paypalContainer.style.display = "none";
+        secondaryButton.style.display = "block";
+      }
+    });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  paypal
+    .Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            // Corrected to purchase_units
+            {
+              amount: {
+                value: "299.99",
+              },
+            },
+          ],
+        });
+      },
+      onApprove: function (data, actions) {
+        // Added onApprove function
+        return actions.order.capture().then(function (details) {
+          alert("Transaction completed by " + details.payer.name.given_name);
+        });
+      },
+    })
+    .render("#paypal-button-container");
+  showPaypalButtons();
+});

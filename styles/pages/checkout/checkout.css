@@ -259,3 +259,16 @@
   opacity: 0.5;
   unicode-bidi: isolate;
 }
+
+.payment-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Set the desired width here */
+}
+
+/* Optional: To ensure the button fits within the container */
+#paypal-button-container {
+  margin-top: 10px;
+  width: 100%;
+}
