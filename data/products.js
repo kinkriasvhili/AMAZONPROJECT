@@ -45,6 +45,7 @@ class Describtion extends Product {
   color;
   size;
   describtions;
+  cartId;
   constructor(productDetails) {
     super(productDetails);
     this.describtions = productDetails.describtions;
@@ -52,6 +53,7 @@ class Describtion extends Product {
     this.color = productDetails.color;
     this.colors = productDetails.colors;
     this.sizes = productDetails.sizes;
+    this.cartId = productDetails.cartId;
   }
   extraInfoHtml() {
     const colorButton = this.colors
@@ -134,6 +136,36 @@ document.addEventListener("click", (event) => {
   }
 });
 
+const generatedIds = new Set();
+
+function generateUniqueId() {
+  const baseId = "f6e7d8c9-0123-4567";
+
+  function generateRandomCharacters(length) {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters[randomIndex];
+    }
+    return result;
+  }
+
+  function generateId() {
+    return `${baseId}-${generateRandomCharacters(10)}`;
+  }
+
+  let newId = generateId();
+
+  while (generatedIds.has(newId)) {
+    newId = generateId();
+  }
+
+  generatedIds.add(newId);
+  return newId;
+}
+
 function handleColorButtonClickColor(event) {
   const clickedButton = event.target;
   const productId = clickedButton.getAttribute("data-product-id");
@@ -157,6 +189,8 @@ function handleColorButtonClickColor(event) {
 
   document.querySelector(`.product-image-${productId}`).src = product.image;
   product.color = imageColor;
+  const cartId = generateUniqueId();
+  product.cartId = cartId;
   saveProductToStorage();
 }
 
@@ -176,6 +210,8 @@ function handleColorButtonClickSize(event) {
   clickedButton.classList.add("active");
   const sizeIndex = clickedButton.getAttribute("data-size-index");
   product.size = product.sizes[sizeIndex].name;
+  const cartId = generateUniqueId();
+  product.cartId = cartId;
   saveProductToStorage();
 }
 

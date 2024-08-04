@@ -109,8 +109,13 @@ function renderProductsGrid() {
     button.addEventListener("click", () => {
       const { productId } = button.dataset;
       let product = getProduct(productId);
-      console.log(product.image);
-      addToCart(productId, product.color, product.size, product.image);
+      addToCart(
+        productId,
+        product.color,
+        product.size,
+        product.image,
+        product.cartId
+      );
 
       updateCartQuantity();
       addToCartAffect(productId, addedMessageTimeouts);

@@ -21,8 +21,13 @@ function loadOrderHtml() {
       let date = new Date(productDetails.estimatedDeliveryTime);
       let options = { month: "long", day: "numeric" };
       const deliveryDate = date.toLocaleDateString("en-US", options);
-      let describtionFirst = matchingProduct.describtions[0];
-      let describtionSecond = matchingProduct.describtions[1];
+      let describtionFirst;
+      let describtionSecond;
+      if (matchingProduct.describtions) {
+        describtionFirst = matchingProduct.describtions[0];
+        describtionSecond = matchingProduct.describtions[1];
+      }
+
       productHTML += `
         <div class="product-image-container">
           <img src="${productDetails.image}" />
@@ -114,20 +119,27 @@ function loadOrderHtml() {
 
   document.querySelectorAll(".js-track-package").forEach((button) => {
     button.addEventListener("click", (event) => {
+      // tracking.html?orderId=123&productId=456
       let productId = button.dataset.trackPackageId;
       let { orderId } = button.dataset;
       trackingItem.productId = productId;
       trackingItem.orderId = orderId;
       let clickedButton = event.target;
+
       const productColor = clickedButton.getAttribute("data-product-color");
       const productSize = clickedButton.getAttribute("data-product-size");
       const productImage = clickedButton.getAttribute("data-product-image");
-      trackingItem.productImage = productImage;
-      trackingItem.productSize = productSize;
-      trackingItem.productColor = productColor;
+      if (productSize != "undefined") {
+        trackingItem.size = productSize;
+      }
+      if (productColor != "undefined") {
+        trackingItem.color = productColor;
+      }
+      if (productImage != "undefined") {
+        trackingItem.image = productImage;
+      }
 
       localStorage.setItem("trackingItem", JSON.stringify(trackingItem));
-      console.log(trackingItem);
     });
   });
 

@@ -20,7 +20,7 @@ disableButton(".js-place-order", () => {
 function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-export function addToCart(productId, color, size, image) {
+export function addToCart(productId, color, size, image, cartId) {
   disableButton(".js-place-order", () => {
     document
       .querySelector(".js-place-order")
@@ -35,6 +35,7 @@ export function addToCart(productId, color, size, image) {
   }
 
   cart.forEach((item) => {
+    console.log(item);
     if (
       productId === item.productId &&
       color === item.color &&
@@ -49,6 +50,7 @@ export function addToCart(productId, color, size, image) {
     matchingItem.quantity += sectionElementValue;
   } else {
     cart.push({
+      cartId,
       image,
       color,
       size,
@@ -81,10 +83,13 @@ export function cartQuantityCalculation(cart) {
   return cartQuantity;
 }
 
-export function updateDeliveryOption(productId, deliveryOptionId) {
+export function updateDeliveryOption(cartId, deliveryOptionId) {
   let matchingItem;
   cart.forEach((cartItem) => {
-    if (productId === cartItem.productId) {
+    console.log(cartItem);
+    if (cartId === cartItem.cartId) {
+      matchingItem = cartItem;
+    } else if (cartId === cartItem.productId) {
       matchingItem = cartItem;
     }
   });

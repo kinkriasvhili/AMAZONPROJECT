@@ -5,9 +5,13 @@ loadProductsFetch(loadTackingPage);
 function loadTackingPage() {
   const trackingItem = JSON.parse(localStorage.getItem("trackingItem"));
   let trackingProduct = getProduct(trackingItem.productId);
-  let describtionFirst = trackingProduct.describtions[0];
-  let describtionSecond = trackingProduct.describtions[1];
 
+  let describtionFirst;
+  let describtionSecond;
+  if (trackingProduct.describtions) {
+    describtionFirst = trackingProduct.describtions[0];
+    describtionSecond = trackingProduct.describtions[1];
+  }
   let orderTime = "";
   let arriveDate = "";
   let productQuantity = 0;
@@ -71,15 +75,15 @@ function loadTackingPage() {
 
       <div class="describtion">
         <div class="color-container">
-          ${trackingItem.productSize ? `${describtionSecond}: ` : ""}
+          ${trackingItem.size ? `${describtionSecond}: ` : ""}
           <span class="quantity-label size-label-${trackingProduct.id}">
-            ${trackingItem.productSize ? trackingItem.productSize : ""}
+            ${trackingItem.size ? trackingItem.size : ""}
           </span>  
         </div>
         <div class="size-container">
-          ${trackingItem.productColor ? `${describtionFirst}: ` : ""}
+          ${trackingItem.color ? `${describtionFirst}: ` : ""}
           <span class="quantity-label quantity-label-${trackingProduct.id}">
-            ${trackingItem.productColor ? trackingItem.productColor : ""}
+            ${trackingItem.color ? trackingItem.color : ""}
           </span> 
         </div>           
       </div>
@@ -88,7 +92,7 @@ function loadTackingPage() {
 
       <img
         class="product-image"
-        src="${trackingItem.productImage}"
+        src="${trackingItem.image}"
       />
 
       <div class="progress-labels-container">
