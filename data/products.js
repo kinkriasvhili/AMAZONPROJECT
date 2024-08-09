@@ -109,7 +109,7 @@ export async function loadProductsFetch(fun) {
     if (JSON.parse(localStorage.getItem("products"))) {
       data = JSON.parse(localStorage.getItem("products"));
     } else {
-      promise = await fetch("../backend/products.json");
+      promise = await fetch("https://kinkriasvhili.github.io/AMAZONPROJECT/backend/products.json");
       data = await promise.json();
     }
     products = data.map((productDetails) => {
