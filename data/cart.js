@@ -35,7 +35,6 @@ export function addToCart(productId, color, size, image, cartId) {
   }
 
   cart.forEach((item) => {
-    console.log(item);
     if (
       productId === item.productId &&
       color === item.color &&

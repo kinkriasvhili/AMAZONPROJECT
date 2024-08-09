@@ -122,7 +122,6 @@ export function renderPaymentSummary() {
 }
 function showPaypalButtons() {
   const paypalContainer = document.querySelector(".paypal-button-container");
-  console.log(paypalContainer);
   paypalContainer.style.display = "none";
 
   document
